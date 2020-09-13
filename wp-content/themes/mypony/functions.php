@@ -6,6 +6,7 @@ function mypony_supports (){
     add_theme_support('menus');
     register_nav_menu('header', 'En-tête du menu');
     register_nav_menu('footer', 'Pied de page');
+}
 
 function mypony_register_assets (){
     wp_register_style('bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
