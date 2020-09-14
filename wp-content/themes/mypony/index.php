@@ -21,6 +21,9 @@
         <?php endwhile ?>
 
     </div>
+
+    <?php the_posts_pagination(); ?>
+    
 <?php else : ?>
     <h1>Pas d'articles</h1>
 <?php endif; ?>
