@@ -6,6 +6,8 @@ function mypony_supports (){
     add_theme_support('menus');
     register_nav_menu('header', 'En-tête du menu');
     register_nav_menu('footer', 'Pied de page');
+
+    add_image_size('post-thumbnail', 350, 215, true);
 }
 
 function mypony_register_assets (){
