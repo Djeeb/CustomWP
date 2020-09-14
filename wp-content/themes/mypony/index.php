@@ -22,7 +22,9 @@
 
     </div>
 
-    <?php the_posts_pagination(); ?>
+    <?php mypony_pagination() ?>
+
+    <?= paginate_links(); ?>
     
 <?php else : ?>
     <h1>Pas d'articles</h1>
