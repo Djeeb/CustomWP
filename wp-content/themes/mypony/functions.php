@@ -54,10 +54,13 @@ function mypony_pagination (){
     echo '</ul>';  
     echo '</nav>';
 }
-    
 
 add_action('after_setup_theme', 'mypony_supports');
 add_action('wp_enqueue_scripts', 'mypony_register_assets');
 add_filter('document_title_separator', 'mypony_title_separator');
 add_filter('nav_menu_css_class', 'mypony_menu_class');
 add_filter('nav_menu_link_attributes', 'mypony_menu_link_class');
+
+require_once('metaboxes/sponso.php');
+
+SponsoMetaBox::register();
