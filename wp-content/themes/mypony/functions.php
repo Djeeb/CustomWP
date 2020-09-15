@@ -96,3 +96,44 @@ require_once('options/agence.php');
 
 SponsoMetaBox::register();
 AgenceMenuPage::register();
+
+add_filter('manage_bien_posts_columns', function ($columns){
+    return [
+        'cb' => $columns['cb'],
+        'thumbnail' => 'Miniature',
+        'title' => $columns['title'],
+        'date' => $columns['date']
+    ];
+});
+
+add_filter('manage_bien_posts_custom_column', function ($column, $postId){
+    if ($column === 'thumbnail'){
+        the_post_thumbnail('thumbnail', $postId);
+    }
+}, 10, 2);
+
+add_action('admin_enqueue_scripts', function (){
+    wp_enqueue_style('admin_mypony', get_template_directory_uri() . '/assets/admin.css');
+});
+
+add_filter('manage_post_posts_columns', function ($columns){
+    $newColumns = [];
+    foreach($columns as $k => $v){
+        if ($k === 'date'){
+            $newColumns['sponso'] = 'Article sponsorisé ?';
+        }
+        $newColumns[$k] = $v;
+    }
+    return $newColumns;
+});
+
+add_filter('manage_post_posts_custom_column', function ($column, $postId){
+    if ($column === 'sponso'){
+        if (!empty(get_post_meta($postId, SponsoMetaBox::META_KEY, true))){
+            $class = 'yes';
+        } else {
+            $class = 'no';
+        }
+        echo '<div class="bullet bullet-' . $class . '"></div>';
+    }
+}, 10, 2);
