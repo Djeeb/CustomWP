@@ -58,7 +58,7 @@ function mypony_pagination (){
 function mypony_init(){
     register_taxonomy('sport', 'post', [
         'labels' => [
-            'name' => 'Sport',
+            'name'              => 'Sport',
             'singular_name'     => 'Sport',
             'plural_name'       => 'Sports',
             'search_items'      => 'Rechercher des sports',
@@ -69,9 +69,18 @@ function mypony_init(){
             'new_item_name'     => 'Renommer le sport',
             'menu_name'         => 'Sport',
         ],
-        'show_in_rest' => true,
-        'hierarchical' => true,
-        'show_admin_column' => true,
+            'show_in_rest'      => true,
+            'hierarchical'      => true,
+            'show_admin_column' => true,
+    ]);
+    register_post_type('bien', [
+            'label'             => 'Bien',
+            'public'            => true,
+            'menu_position'     => 3,
+            'menu_icon'         => 'dashicons-building',
+            'supports'          => ['title', 'editor', 'thumbnail'],
+            'show_in_rest'      => true,
+            'has_archive'       => true,
     ]);
 }
 
