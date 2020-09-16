@@ -137,3 +137,25 @@ add_filter('manage_post_posts_custom_column', function ($column, $postId){
         echo '<div class="bullet bullet-' . $class . '"></div>';
     }
 }, 10, 2);
+
+function mypony_pre_get_posts (WP_Query $query){
+    if (is_admin() || !is_home() || !$query->is_main_query()){
+        return;
+    }
+    if (get_query_var('sponso') === '1'){
+        $meta_query = $query->get('meta_query', []);
+        $meta_query[] = [
+            'key' => SponsoMetaBox::META_KEY,
+            'compare' => 'EXISTS',
+        ];
+        $query->set('meta_query', $meta_query);
+    }
+}
+
+function mypony_query_vars($params){
+    $params[] = 'sponso';
+    return $params;
+}
+
+add_action('pre_get_posts', 'mypony_pre_get_posts');
+add_filter('query_vars', 'mypony_query_vars');
