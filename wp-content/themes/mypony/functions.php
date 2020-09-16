@@ -160,7 +160,10 @@ function mypony_query_vars($params){
 add_action('pre_get_posts', 'mypony_pre_get_posts');
 add_filter('query_vars', 'mypony_query_vars');
 
+require_once 'widgets/YoutubeWidget.php';
+
 function mypony_register_widget(){
+    register_widget(YoutubeWidget::class);
     register_sidebar([
         'id' => 'homepage',
         'name' => 'Sidebar Accueil',
