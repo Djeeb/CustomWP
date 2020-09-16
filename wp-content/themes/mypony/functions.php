@@ -159,3 +159,16 @@ function mypony_query_vars($params){
 
 add_action('pre_get_posts', 'mypony_pre_get_posts');
 add_filter('query_vars', 'mypony_query_vars');
+
+function mypony_register_widget(){
+    register_sidebar([
+        'id' => 'homepage',
+        'name' => 'Sidebar Accueil',
+        'before_widget' => '<div class="p-4 %2$s" id="%1$s">',
+        'after-widget' => '</div>',
+        'before_title' => '<h4 class="font-italic">',
+        'after_title' => '</h4>'
+    ]);
+}
+
+add_action('widgets_init', 'mypony_register_widget');
