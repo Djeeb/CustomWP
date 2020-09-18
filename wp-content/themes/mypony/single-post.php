@@ -14,13 +14,19 @@
         </p>
         <?php the_content() ?>
 
+        <?php
+        if (comments_open() || get_comments_number()){
+          comments_template();
+        }
+        ?>
+
         <h2>Articles relatifs</h2>
 
         <div class="row">
         <?php
         $sports = array_map(function ($term){
           return $term->term_id;
-        }, get_the_terms(get_post(), 'sport')); 
+        }, get_the_terms(get_post(), 'sport'));
         $query = new WP_Query([
           'post_not_in'     => [get_the_ID()],
           'post_type'       => 'post',
