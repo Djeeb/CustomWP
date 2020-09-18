@@ -13,7 +13,7 @@
   <button type="submit" class="btn btn-primary mb-2">Rechercher</button>
 </form>
 
-<h1 class=mb-4>Résultat pour votre recherche "<?= esc_html(get_search_query()) ?>"</h1>
+<h1 class=mb-4><?= sprintf(apply_filters('mypony_search_title', "Résultat pour votre recherche \"%s\""), esc_html(get_search_query())) ?>"</h1>
 
 <?php if (have_posts()) : ?>
     <div class="row">
